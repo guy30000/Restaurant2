@@ -40,6 +40,7 @@ public class Menu {
         Calendar dateV = Calendar.getInstance();
         menuItem.add( new Menu("Potato",3.25,"astinkin potato", "app",dateV) );
         menuItem.add( new Menu("Nachos",7.25,"Chips beaf, beens and cheese", "app",dateV) );
+        menuItem.add( new Menu("burger",6.00,"Burger no cheese", "entry",dateV) );
         ////test parts
 
 
@@ -54,7 +55,7 @@ public class Menu {
             inV = new Scanner(System.in);
             selectionV = inV.nextInt();
 
-            if (selectionV < 1 || selectionV > 4) {
+            if (selectionV < 1 || selectionV > 4) {         ///////////////////////////add item
                 System.out.println("*Invalid selection*\n");
                 continue;
 //                inV = new Scanner(System.in);
@@ -62,16 +63,24 @@ public class Menu {
             }
             if (selectionV == 1) {
                 System.out.println("one -" + selectionV);
+                     for (int i = 0; i < menuItem.size(); i++) {
+                        System.out.println(menuItem.get(i).getNameVV() + " - " + menuItem.get(i).getDescriptionVV() +
+                        "   $" + menuItem.get(i).getPriceVV());
+
+                         //System.out.println(descriptionVV[);
+                }
+
+
             }
-            if (selectionV == 2) {
+            if (selectionV == 2) {                     ///////////////////////////View  item
                 System.out.println("2 -" + selectionV);
             }
-            if (selectionV == 3) {
+            if (selectionV == 3) { ///////////////////////////add item
                 System.out.println("3 -" + selectionV);
             }
-            if (selectionV == 4) {   //done
+            if (selectionV == 4) {   /////////////////////////////Done
                 System.exit(0);
-            }
+            }                       ///////////////////////////// This is actually doneDone
 
 
 

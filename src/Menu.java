@@ -28,7 +28,7 @@ public class Menu {
     public double getPriceVV() { return myPriceVV; }
     public String getDescriptionVV() { return myDescriptionVV; }
     public String getCategoryVV() { return myCategoryVV; }
-    public Calendar DateVV() { return myDateVV; }
+    public Calendar getDateVV() { return myDateVV; }
 
     public static void main(String[] args) {
 
@@ -55,28 +55,56 @@ public class Menu {
             inV = new Scanner(System.in);
             selectionV = inV.nextInt();
 
-            if (selectionV < 1 || selectionV > 4) {         ///////////////////////////add item
+            if (selectionV < 1 || selectionV > 4) {         //////////////////////////
                 System.out.println("*Invalid selection*\n");
                 continue;
 //                inV = new Scanner(System.in);
 //                selectionV = inV.nextInt();
             }
             if (selectionV == 1) {
-                System.out.println("one -" + selectionV);
                      for (int i = 0; i < menuItem.size(); i++) {
                         System.out.println(menuItem.get(i).getNameVV() + " - " + menuItem.get(i).getDescriptionVV() +
                         "   $" + menuItem.get(i).getPriceVV());
-
-                         //System.out.println(descriptionVV[);
                 }
 
 
             }
-            if (selectionV == 2) {                     ///////////////////////////View  item
-                System.out.println("2 -" + selectionV);
+            if (selectionV == 2) {                     ///////////////////////////View  item////////////////
+                System.out.println("Select iterm # to view more details\n");
+                for (int i = 0; i < menuItem.size(); i++) {
+                    System.out.println(i + ". " + menuItem.get(i).getNameVV());
+
+                }
+                inV = new Scanner(System.in);
+                int menuItemSelection = inV.nextInt();
+                for (int i = 0; i < menuItem.size(); i++) {
+                    if (menuItemSelection == i) {
+                        System.out.println(i + ". Item: " + menuItem.get(i).getNameVV() + " *Price: " + menuItem.get(i).getPriceVV() + " *Categoty: " +
+                                menuItem.get(i).getCategoryVV() + "\n Description: " + menuItem.get(i).getDescriptionVV() + getDateVV);
+                    }
+                }
             }
+
+
             if (selectionV == 3) { ///////////////////////////add item
-                System.out.println("3 -" + selectionV);
+                System.out.println("***Add New Item***\nName of item/entre");
+                String nameAdd, descriptionAdd, categotyAdd;
+                double pticeAdd;
+                inV = new Scanner(System.in);
+                nameAdd = inV.nextLine();
+                System.out.println("Item Description");
+                inV = new Scanner(System.in);
+                descriptionAdd = inV.nextLine();
+                System.out.println("Category");
+                inV = new Scanner(System.in);
+                categotyAdd = inV.nextLine();
+                System.out.println("Price *Enter prices in 0.00 format");
+                inV = new Scanner(System.in);
+                pticeAdd = inV.nextDouble();
+
+
+                menuItem.add( new Menu(nameAdd,pticeAdd,descriptionAdd, categotyAdd,dateV) );
+
             }
             if (selectionV == 4) {   /////////////////////////////Done
                 System.exit(0);

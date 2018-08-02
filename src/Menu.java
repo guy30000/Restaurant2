@@ -80,30 +80,58 @@ public class Menu {
                 for (int i = 0; i < menuItem.size(); i++) {
                     if (menuItemSelection == i) {
                         System.out.println(i + ". Item: " + menuItem.get(i).getNameVV() + " *Price: " + menuItem.get(i).getPriceVV() + " *Categoty: " +
-                                menuItem.get(i).getCategoryVV() + "\n Description: " + menuItem.get(i).getDescriptionVV() + getDateVV);
+                                menuItem.get(i).getCategoryVV() + "\n Description: " + menuItem.get(i).getDescriptionVV());
                     }
                 }
             }
 
 
             if (selectionV == 3) { ///////////////////////////add item
-                System.out.println("***Add New Item***\nName of item/entre");
-                String nameAdd, descriptionAdd, categotyAdd;
+                System.out.println("***Add New Item***\nName of item/entree");
+                String nameAdd;
+                String categotyAdd = "";
+                String descriptionAdd;
+                int categotySelectionNum;
                 double pticeAdd;
                 inV = new Scanner(System.in);
                 nameAdd = inV.nextLine();
                 System.out.println("Item Description");
                 inV = new Scanner(System.in);
                 descriptionAdd = inV.nextLine();
-                System.out.println("Category");
-                inV = new Scanner(System.in);
-                categotyAdd = inV.nextLine();
+                do {
+                    System.out.println("Select Category: \n1. Appatizer\n2. Entree\n3. Desert\n4. A La Carte\n5.Non-Alcoholic Drink\n6. Alcohol");
+                    inV = new Scanner(System.in);
+                    Scanner scan = new Scanner(System.in);///These 4 lines reject input that isnt an int
+                    while(!scan.hasNextInt()) {   ///These 3 lines reject input that isnt an int
+                        scan.next();                    }
+                    categotySelectionNum = scan.nextInt();
+                    if (categotySelectionNum > 0 && categotySelectionNum < 7) {
+                        if (categotySelectionNum == 1) {
+                            categotyAdd = "Appatizer"; }
+                        if (categotySelectionNum == 2) {
+                            categotyAdd = "Entree"; }
+                        if (categotySelectionNum == 3) {
+                            categotyAdd = "Desert"; }
+                        if (categotySelectionNum == 4) {
+                            categotyAdd = "A La Carte"; }
+                        if (categotySelectionNum == 5) {
+                            categotyAdd = "Non-Alcoholic Drink"; }
+                        if (categotySelectionNum == 6) {
+                            categotyAdd = "Alcohol"; }
+                        if (categotySelectionNum > 6 || categotySelectionNum < 0) {
+                            System.out.println("Invalid selection: Please choose from list"); }
+
+                    }
+                } while (categotySelectionNum > 6 || categotySelectionNum < 0);
+
                 System.out.println("Price *Enter prices in 0.00 format");
-                inV = new Scanner(System.in);
-                pticeAdd = inV.nextDouble();
+                Scanner scanV = new Scanner(System.in);///These 3 lines reject input that isnt an Double
+                while(!scanV.hasNextDouble()) {
+                    scanV.next(); }
+                pticeAdd = scanV.nextDouble();
 
 
-                menuItem.add( new Menu(nameAdd,pticeAdd,descriptionAdd, categotyAdd,dateV) );
+                menuItem.add( new Menu(nameAdd,pticeAdd,descriptionAdd, categotyAdd ,dateV) );
 
             }
             if (selectionV == 4) {   /////////////////////////////Done
@@ -115,4 +143,7 @@ public class Menu {
 
         } while (inV !=null);
     }
+
+
+
 }

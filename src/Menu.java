@@ -1,8 +1,9 @@
 package exercises.Retake.restaurant;
 
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 
 public class Menu {
@@ -12,23 +13,23 @@ public class Menu {
     public String run = "true";
     String myNameVV, myDescriptionVV, myCategoryVV;
     private double myPriceVV;
-    private Calendar myDateVV;
+    private LocalDate myDateVV;
 
 //menu item contains Price description, category and weather new
 
-   public Menu( String nameVV, double priceVV, String descriptionVV, String categoryVV, Calendar dateVV)
-   {
-       myNameVV = nameVV;
-       myPriceVV = priceVV;
-       myDescriptionVV = descriptionVV;
-       myCategoryVV = categoryVV;
-       myDateVV = dateVV;
-   }
+   public Menu(String nameVV, double priceVV, String descriptionVV, String categoryVV, LocalDate dateVV)
+    {
+        myNameVV = nameVV;
+        myPriceVV = priceVV;
+        myDescriptionVV = descriptionVV;
+        myCategoryVV = categoryVV;
+        myDateVV = dateVV;
+    }
     public String getNameVV() { return myNameVV; }
     public double getPriceVV() { return myPriceVV; }
     public String getDescriptionVV() { return myDescriptionVV; }
     public String getCategoryVV() { return myCategoryVV; }
-    public Calendar getDateVV() { return myDateVV; }
+    public LocalDate getDateVV() { return myDateVV; }
 
     public static void main(String[] args) {
 
@@ -37,7 +38,9 @@ public class Menu {
 
 
         ArrayList<Menu> menuItem = new ArrayList<Menu>();
-        Calendar dateV = Calendar.getInstance();
+
+        LocalDate dateV = (java.time.LocalDate.now());
+        SimpleDateFormat formatterV = new SimpleDateFormat("yyyy-MM-dd");
         menuItem.add( new Menu("Potato",3.25,"astinkin potato", "app",dateV) );
         menuItem.add( new Menu("Nachos",7.25,"Chips beaf, beens and cheese", "app",dateV) );
         menuItem.add( new Menu("burger",6.00,"Burger no cheese", "entry",dateV) );
@@ -79,8 +82,8 @@ public class Menu {
                 int menuItemSelection = inV.nextInt();
                 for (int i = 0; i < menuItem.size(); i++) {
                     if (menuItemSelection == i) {
-                        System.out.println(i + ". Item: " + menuItem.get(i).getNameVV() + " *Price: " + menuItem.get(i).getPriceVV() + " *Categoty: " +
-                                menuItem.get(i).getCategoryVV() + "\n Description: " + menuItem.get(i).getDescriptionVV());
+                        System.out.println(i + ". Item: " + menuItem.get(i).getNameVV() + " **Price: " + menuItem.get(i).getPriceVV() + " **Categoty: " +
+                                menuItem.get(i).getCategoryVV() + " **Last Modified: " + menuItem.get(i).getDateVV() + "\n Description: " + menuItem.get(i).getDescriptionVV());
                     }
                 }
             }
@@ -99,7 +102,7 @@ public class Menu {
                 inV = new Scanner(System.in);
                 descriptionAdd = inV.nextLine();
                 do {
-                    System.out.println("Select Category: \n1. Appatizer\n2. Entree\n3. Desert\n4. A La Carte\n5.Non-Alcoholic Drink\n6. Alcohol");
+                    System.out.println("Select Category: \n1. Appatizer\n2. Entree\n3. Desert\n4. A La Carte\n5. Non-Alcoholic Drink\n6. Alcohol");
                     inV = new Scanner(System.in);
                     Scanner scan = new Scanner(System.in);///These 4 lines reject input that isnt an int
                     while(!scan.hasNextInt()) {   ///These 3 lines reject input that isnt an int
@@ -130,8 +133,8 @@ public class Menu {
                     scanV.next(); }
                 pticeAdd = scanV.nextDouble();
 
-
-                menuItem.add( new Menu(nameAdd,pticeAdd,descriptionAdd, categotyAdd ,dateV) );
+                LocalDate dateVV = (java.time.LocalDate.now());
+                menuItem.add( new Menu(nameAdd,pticeAdd,descriptionAdd, categotyAdd ,dateVV) );
 
             }
             if (selectionV == 4) {   /////////////////////////////Done
